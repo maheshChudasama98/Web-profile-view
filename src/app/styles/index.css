@@ -1,0 +1,14 @@
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+body, h1, h2, h3, h4, h5, h6, p ,li {
+  /* Your CSS styles here */
+  font-family: 'Nunito Sans', sans-serif;
+
+  /* Additional styles */
+}

@@ -1,0 +1,48 @@
+.swal2-container {
+    z-index: 100000;
+}
+
+.slick-list {
+    z-index: -1;
+}
+
+.slick-prev {
+    z-index: 10;
+    left: 10px;
+    color: #fff;
+    font-size: 20px;
+    /* padding: 10px; */
+}
+
+.slick-next {
+    z-index: 10;
+    right: 20px;
+    font-size: 20px;
+}
+
+
+.slick-next:hover {
+    /* background-color: #555; */
+    /* Change the background color on hover */
+}
+
+.icon {
+    display: list-item;
+    font-size: 70px;
+    margin: 0 auto;
+    color: #feb800;
+    transition: 1s;
+    align-items: center;
+
+}
+
+.services-pre h2, .services-pre h3 {
+    text-align-last: center;
+    color: black;
+}
+
+.services-pre:hover .icon {
+    transition: 1.0s;
+    /* transform: rotate(180deg); */
+    font-size: 80px;
+}

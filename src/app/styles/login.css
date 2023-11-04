@@ -1,0 +1,111 @@
+.mainBackGroud {
+    height: auto;
+    min-height: 100vh;
+    background-attachment: fixed;
+    /* background-size: cover; */
+    /* background-repeat: no-repeat; */
+    /* background-image: url('../../assets/images/loginBackgroud11.jpg'); */
+    background: #bdc3c773;
+    /* background: -webkit-linear-gradient(to top, #2c3e50, #bdc3c7); */
+    /* background: linear-gradient(to top, #2c3e50, #bdc3c7); */
+}
+
+.backGround {
+    /* height: 663px; */
+    /* height: 938px; */
+    background-size: cover;
+    background-position: center;
+    /* background-color: black; */
+    /* background-image: url('../../assets/images/loginBackgroud11.jpg'); */
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    height: 100vh;
+}
+
+.box-form {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    border-radius: 10px;
+    background-color: hsla(0, 0%, 100%, 1);
+    margin: 0px;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    /* box-shadow: 0px 0px 20px -5px black; */
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.Login {
+    margin: -20px 0px 20px 0px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 100;
+}
+
+.social-media {
+    font-size: 35px !important;
+    margin: 40px 6px;
+    color: black;
+}
+
+.icon {
+    color: black;
+}
+
+.navbar {
+    /* background: linear-gradient(120deg, #C4E759, #6DE195); */
+    /* background: linear-gradient(120deg, #41c7af, #54E38E); */
+    /* background: linear-gradient(120deg, #a16bfe, #de80df); */
+    min-height: 10px;
+    background: linear-gradient(45deg, #5583ee, #41d8dd);
+}
+
+.divMail {
+    float: right;
+    width: 80%;
+}
+
+.sidebar-icon {
+    font-size: 20px;
+}
+
+.heading {
+    max-width: 248px;
+    min-width: 248px;
+
+    @media (max-width: 767px) {
+        /* text-align: center; */
+        min-width: 250px;
+    }
+
+    @media (max-width: 555px) {
+        /* te   xt-align: left, */
+        max-width: 250px;
+
+        min-width: 95%;
+        /* min-width:  100px; */
+        margin: 5px auto;
+
+    }
+}
+
+.recodeMoblie { display: none;}
+.recodeComputer { display: block;}
+
+@media only screen and (max-width: 600px) {
+    .box-form {
+        width: 300px;
+    }
+
+    .recodeMoblie {
+        display: block;
+    }
+
+    .recodeComputer {
+        display: none;
+    }
+}

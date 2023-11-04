@@ -1,0 +1,64 @@
+.header-main-div {
+    /* position: ; */
+    contain: content;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.header-name-div {
+    /* You can add styles to the name div if needed */
+}
+
+.web-name {
+    margin: 0;
+    color: #000000;
+    /* Remove default margin for h2 */
+}
+
+.header-option-div {
+    /* You can add styles to the option div if needed */
+}
+
+.header-option-div ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.header-option-div li {
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-right: 20px;
+    /* Adjust this margin as needed to separate list items */
+    position: relative;
+    cursor: pointer;
+    color: #000000;
+}
+
+.header-option-div li::after {
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    /* Adjust the thickness of the underline as needed */
+    background-color: #000000;
+    color: #feb800;
+    /* Change the color to your preferred color */
+    transition: width 0.3s ease, left 0.3s ease;
+    /* Add transitions for width and left */
+}
+
+.header-option-div li:hover::after {
+    width: 100%;
+    left: 0;
+    /* Move the underline from left to right */
+}
