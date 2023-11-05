@@ -82,7 +82,7 @@ let menus = [
         role: ["SuperAdmin", "Admin", "User"],
         label: 'Company',
         type: "nav-item",
-        uri: "/admin/company",
+        uri: "/admin/companies",
         icon: <FontAwesomeIcon icon={faBuilding} style={{ fontSize: 17 }} />
     },
     {

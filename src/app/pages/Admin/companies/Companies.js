@@ -8,15 +8,15 @@ import { Button } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Company = () => {
+const Companies = () => {
   const navigation = useNavigate()
   const companyAddAction = () => {
-    navigation("/admin/education/create")
+    navigation("/admin/company/create")
   }
   return (
     <>
       <JumboCardQuick
-        title={"Education"}
+        title={"Companies"}
         action={
           <Button
             size='small'
@@ -50,4 +50,4 @@ const Company = () => {
   )
 }
 
-export default Company
+export default Companies

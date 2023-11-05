@@ -11,11 +11,13 @@ import ModifyExperience from "app/pages/Admin/experience/ModifyExperience";
 import Projects from "app/pages/Admin/projects/Projects";
 import ModifyProjects from "app/pages/Admin/projects/ModifyProjects";
 
+import Companies from "app/pages/Admin/companies/Companies";
+import ModifyCompany from "app/pages/Admin/companies/ModifyCompany";
+
 import TechnicalSkills from "app/pages/Admin/skills/technicalSkills/TechnicalSkills";
 import SoftSkills from "app/pages/Admin/skills/softSkills/SoftSkills";
 import Languages from "app/pages/Admin/skills/languagesSkills/Languages";
 import Certificate from "app/pages/Admin/skills/certificate/Certificate";
-import Company from "app/pages/Admin/company/Company";
 import Setting from "app/pages/Admin/setting/Setting";
 
 const userRoutes = [
@@ -68,8 +70,12 @@ const userRoutes = [
         element: <Page component={Certificate} />
     },
     {
-        path: "/admin/company",
-        element: <Page component={Company} />
+        path: "/admin/companies",
+        element: <Page component={Companies} />
+    },
+    {
+        path: "/admin/company/create",
+        element: <Page component={ModifyCompany} />
     },
     {
         path: "/admin/setting",
