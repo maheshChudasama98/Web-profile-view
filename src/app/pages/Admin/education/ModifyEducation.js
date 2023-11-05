@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { Star } from '@mui/icons-material';
 
 const ModifyEducation = () => {
     const navigation = useNavigate()

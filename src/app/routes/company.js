@@ -4,7 +4,10 @@ import Dashboard from "app/pages/Admin/dashboard/Dashboard";
 import Profile from "app/pages/Admin/profile/Profile";
 import Education from "app/pages/Admin/education/Education";
 import ModifyEducation from "app/pages/Admin/education/ModifyEducation";
+
 import Experience from "app/pages/Admin/experience/Experience";
+import ModifyExperience from "app/pages/Admin/experience/ModifyExperience";
+    
 import Projects from "app/pages/Admin/projects/Projects";
 import TechnicalSkills from "app/pages/Admin/skills/technicalSkills/TechnicalSkills";
 import SoftSkills from "app/pages/Admin/skills/softSkills/SoftSkills";
@@ -33,6 +36,10 @@ const userRoutes = [
     {
         path: "/admin/experience",
         element: <Page component={Experience} />
+    },
+    {
+        path: "/admin/experience/create",
+        element: <Page component={ModifyExperience} />
     },
     {
         path: "/admin/projects",
