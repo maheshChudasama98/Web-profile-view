@@ -9,7 +9,7 @@ export const storeToken = (token) => {
 };
 
 export const removeToken = () => {
-    localStorage.removeItem('token');
+    // localStorage.removeItem('token');
     if(!config?.authSetting?.axiosObject)
         throw Error("axiosObject need to be set under authSettings inside app/config/main.js");
     else

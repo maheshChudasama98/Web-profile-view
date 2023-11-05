@@ -11,18 +11,32 @@ import { useNavigate } from 'react-router-dom';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { Star } from '@mui/icons-material';
 
 const ModifyEducation = () => {
     const navigation = useNavigate()
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [startYear, setStartYear] = useState(null);
+    const [endYear, setEndYear] = useState(null);
     const goBackAction = () => {
         navigation("/admin/education")
     }
 
-    const handleDateChange = (date) => {
-        console.log(date);
-        setSelectedDate(date);
+    const handleDateChange = (fiend, date, setFieldValue) => {
+        const month = date.$M + 1
+        const year = date.$y;
+        const combinedDate = `${month}-${year}`;
+        if (fiend === "endYear") {
+            setEndYear(date)
+            setFieldValue("endYear", combinedDate)
+        } else if (fiend === "startYear") {
+            setStartYear(date)
+            setFieldValue("startYear", combinedDate)
+        }
     };
+
+    const onSubmitAction = (values) => {
+        console.log(values);
+    }
     return (
         <>
             <JumboCardQuick
@@ -45,31 +59,56 @@ const ModifyEducation = () => {
                     }
                 }}
             >
-
                 <Formik
                     initialValues={{
                         field: "",
                         board: "",
-                        institute: ""
+                        institute: "",
+                        startYear: "",
+                        endYear: "",
+                        state: "",
+                        city: "",
                     }}
                     validationSchema={Yup.object().shape({
                         field: Yup
                             .string()
-                            .required('Field / Subject is Required'),
+                            .required('Field / Subject is required'),
                         board: Yup
                             .string()
-                            .required('Board is Required'),
+                            .required('Board is required'),
                         institute: Yup
                             .string()
-                            .required('Institute is Required'),
+                            .required('Institute is required'),
+                        startYear: Yup
+                            .string()
+                            .required('Start year is required'),
+                        endYear: Yup
+                            .string()
+                            .required('End year is required'),
+                        state: Yup
+                            .string()
+                            .required('State is required'),
+                        city: Yup
+                            .string()
+                            .required('City year is required'),
+
                     })}
-                    onSubmit={(e) => { console.log(e) }}
+                    onSubmit={onSubmitAction}
                 >
                     {(props) => {
                         const { values, touched, errors, setFieldValue, handleBlur, handleChange, handleSubmit } = props;
+
                         return (
                             <>
                                 <Grid container spacing={1.5} >
+                                    <Grid item xs={12} >
+                                        <h3
+                                            style={{
+                                                marginBottom: "7px",
+                                                marginTop: "0px"
+                                            }}
+                                        >Education Degree</h3>
+                                    </Grid>
                                     <Grid item xs={12}   >
                                         <TextField
                                             required
@@ -112,31 +151,92 @@ const ModifyEducation = () => {
                                             helperText={Boolean(errors.board) && touched.board ? errors.board : ''}
                                         />
                                     </Grid>
+
+                                    <Grid item xs={12} >
+                                        <h3
+                                            style={{
+                                                marginBottom: "7px",
+                                                marginTop: "7px"
+                                            }}
+                                        >Education Place</h3>
+                                    </Grid>
+
                                     <Grid item xs={12} md={6}  >
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            id="state"
+                                            label="State"
+                                            name='state'
+                                            value={values.state}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            error={Boolean(errors.state) && touched.state}
+                                            helperText={Boolean(errors.state) && touched.state ? errors.state : ''}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} md={6} >
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            id="city"
+                                            label="City"
+                                            name='city'
+                                            value={values.city}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            error={Boolean(errors.city) && touched.city}
+                                            helperText={Boolean(errors.city) && touched.city ? errors.city : ''}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}  >
+                                        <h3
+                                            style={{
+                                                marginBottom: "7px",
+                                                marginTop: "7px"
+                                            }}
+                                        >Education Year </h3>
+                                    </Grid>
+
+                                    <Grid item xs={12} md={6} >
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DatePicker
-                                                required
-                                                slotProps={{ textField: { fullWidth: true }, }}
-                                                label={'Start Year'}
+                                                label={'Start Year *'}
                                                 views={['month', 'year']}
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
+                                                slotProps={{
+                                                    textField: {
+                                                        fullWidth: true,
+                                                        error: Boolean(errors.startYear) && touched.startYear,
+                                                        helperText: Boolean(errors.startYear) && touched.startYear ? errors.startYear : ''
+                                                    },
+
+                                                }}
+                                                value={startYear}
+                                                onChange={(date) => handleDateChange("startYear", date, setFieldValue)}
+                                                maxDate={endYear}
                                             />
                                         </LocalizationProvider>
                                     </Grid>
-                                    <Grid item xs={12} md={6}  >
+                                    <Grid item xs={12} md={6} >
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DatePicker
-                                                slotProps={{ textField: { fullWidth: true }, }}
-                                                label={'End Year'}
+                                                label={'End Year *'}
                                                 views={['month', 'year']}
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
-                                                renderInput={(params) => <TextField sx={{ marginX: 1 }} size="small" {...params} />}
+                                                value={endYear}
+                                                onChange={(date) => handleDateChange("endYear", date, setFieldValue)}
+                                                minDate={startYear}
+                                                slotProps={{
+                                                    textField: {
+                                                        fullWidth: true,
+                                                        error: Boolean(errors.endYear) && touched.endYear,
+                                                        helperText: Boolean(errors.endYear) && touched.endYear ? errors.endYear : ''
+                                                    },
+
+                                                }}
                                             />
                                         </LocalizationProvider>
                                     </Grid>
-                                </Grid>
+                                </Grid >
                                 <Grid
                                     container
                                     sx={{ textAlignLast: "end", mt: 0.5 }}
@@ -145,7 +245,8 @@ const ModifyEducation = () => {
                                         <Button
                                             sx={{ marginX: 1 }}
                                             variant="contained"
-                                            className='save-button'>
+                                            className='save-button'
+                                            onClick={handleSubmit}>
                                             Save
                                         </Button>
                                         <Button

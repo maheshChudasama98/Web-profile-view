@@ -6,12 +6,12 @@ const Loader = () => {
 
             <div className="w-100 h-100  overlay">
                 <div className="loader overlay">
-                    <div class="spinner">
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
+                    <div className="spinner">
+                        <div className="dot"></div>
+                        <div className="dot"></div>
+                        <div className="dot"></div>
+                        <div className="dot"></div>
+                        <div className="dot"></div>
                     </div>
 
                     {/* <svg className="pl" width="240" height="240" viewBox="0 0 240 240">
