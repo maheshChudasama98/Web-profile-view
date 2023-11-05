@@ -13,8 +13,8 @@ import { useNavigate } from 'react-router-dom';
 
 const ModifyExperience = () => {
     const navigation = useNavigate()
-    const [startYear, setStartYear] = useState(null);
-    const [endYear, setEndYear] = useState(null);
+    const [startDuration, setStartDuration] = useState(null);
+    const [endDuration, setEndDuration] = useState(null);
 
     const goBackAction = () => {
         navigation("/admin/experience")
@@ -23,12 +23,12 @@ const ModifyExperience = () => {
         const month = date.$M + 1
         const year = date.$y;
         const combinedDate = `${month}-${year}`;
-        if (fiend === "endYear") {
-            setEndYear(date)
-            setFieldValue("endYear", combinedDate)
-        } else if (fiend === "startYear") {
-            setStartYear(date)
-            setFieldValue("startYear", combinedDate)
+        if (fiend === "endDuration") {
+            setEndDuration(date)
+            setFieldValue("endDuration", combinedDate)
+        } else if (fiend === "startDuration") {
+            setStartDuration(date)
+            setFieldValue("startDuration", combinedDate)
         }
     };
 
@@ -65,9 +65,9 @@ const ModifyExperience = () => {
                         position: "",
                         location: "",
                         achievements: "",
-                        startYear: "",
-                        endYear: "",
-                        details: "",
+                        startDuration: "",
+                        endDuration: "",
+                        description: "",
                     }}
                     validationSchema={Yup.object().shape({
                         jobTitle: Yup
@@ -85,10 +85,10 @@ const ModifyExperience = () => {
                         // achievements: Yup
                         //     .string()
                         //     .required('Achievements is required'),
-                        startYear: Yup
+                        startDuration: Yup
                             .string()
                             .required('Start year is required'),
-                        endYear: Yup
+                        endDuration: Yup
                             .string()
                             .required('End year is required'),
                     })}
@@ -179,41 +179,41 @@ const ModifyExperience = () => {
                                                 marginBottom: "7px",
                                                 marginTop: "7px"
                                             }}
-                                        >Experience Year </h3>
+                                        >Experience Duration </h3>
                                     </Grid>
 
                                     <Grid item xs={12} md={6} >
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DatePicker
-                                                label={'Start Year *'}
+                                                label={'Start *'}
                                                 views={['month', 'year']}
                                                 slotProps={{
                                                     textField: {
                                                         fullWidth: true,
-                                                        error: Boolean(errors.startYear) && touched.startYear,
-                                                        helperText: Boolean(errors.startYear) && touched.startYear ? errors.startYear : ''
+                                                        error: Boolean(errors.startDuration) && touched.startDuration,
+                                                        helperText: Boolean(errors.startDuration) && touched.startDuration ? errors.startDuration : ''
                                                     },
 
                                                 }}
-                                                value={startYear}
-                                                onChange={(date) => handleDateChange("startYear", date, setFieldValue)}
-                                                maxDate={endYear}
+                                                value={startDuration}
+                                                onChange={(date) => handleDateChange("startDuration", date, setFieldValue)}
+                                                maxDate={endDuration}
                                             />
                                         </LocalizationProvider>
                                     </Grid>
                                     <Grid item xs={12} md={6} >
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DatePicker
-                                                label={'End Year *'}
+                                                label={'End *'}
                                                 views={['month', 'year']}
-                                                value={endYear}
-                                                onChange={(date) => handleDateChange("endYear", date, setFieldValue)}
-                                                minDate={startYear}
+                                                value={endDuration}
+                                                onChange={(date) => handleDateChange("endDuration", date, setFieldValue)}
+                                                minDate={startDuration}
                                                 slotProps={{
                                                     textField: {
                                                         fullWidth: true,
-                                                        error: Boolean(errors.endYear) && touched.endYear,
-                                                        helperText: Boolean(errors.endYear) && touched.endYear ? errors.endYear : ''
+                                                        error: Boolean(errors.endDuration) && touched.endDuration,
+                                                        helperText: Boolean(errors.endDuration) && touched.endDuration ? errors.endDuration : ''
                                                     },
 
                                                 }}
@@ -227,7 +227,7 @@ const ModifyExperience = () => {
                                                 marginBottom: "7px",
                                                 marginTop: "7px"
                                             }}
-                                        >Experience details </h3>
+                                        >Experience Description </h3>
 
                                     </Grid>
                                     <Grid item xs={12} >
@@ -235,14 +235,14 @@ const ModifyExperience = () => {
                                             multiline
                                             rows={4}
                                             fullWidth
-                                            id="details"
-                                            label="Details"
-                                            name='details'
-                                            value={values.details}
+                                            id="description"
+                                            label="Description"
+                                            name='description'
+                                            value={values.description}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            error={Boolean(errors.details) && touched.details}
-                                            helperText={Boolean(errors.details) && touched.details ? errors.details : ''}
+                                            error={Boolean(errors.description) && touched.description}
+                                            helperText={Boolean(errors.description) && touched.description ? errors.description : ''}
                                         />
                                     </Grid>
 

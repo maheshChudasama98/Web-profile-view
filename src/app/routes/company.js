@@ -7,8 +7,10 @@ import ModifyEducation from "app/pages/Admin/education/ModifyEducation";
 
 import Experience from "app/pages/Admin/experience/Experience";
 import ModifyExperience from "app/pages/Admin/experience/ModifyExperience";
-    
+
 import Projects from "app/pages/Admin/projects/Projects";
+import ModifyProjects from "app/pages/Admin/projects/ModifyProjects";
+
 import TechnicalSkills from "app/pages/Admin/skills/technicalSkills/TechnicalSkills";
 import SoftSkills from "app/pages/Admin/skills/softSkills/SoftSkills";
 import Languages from "app/pages/Admin/skills/languagesSkills/Languages";
@@ -44,6 +46,10 @@ const userRoutes = [
     {
         path: "/admin/projects",
         element: <Page component={Projects} />
+    },
+    {
+        path: "/admin/project/create",
+        element: <Page component={ModifyProjects} />
     },
     {
         path: "/admin/technical/skills",

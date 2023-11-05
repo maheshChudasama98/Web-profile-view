@@ -7,19 +7,18 @@ import { Box, Grid } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleChevronLeft, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import JumboCardQuick from '@jumbo/components/JumboCardQuick';
-import { useNavigate } from 'react-router-dom';
-
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { useNavigate } from 'react-router-dom';
 
-const ModifyEducation = () => {
+const ModifyProjects = () => {
     const navigation = useNavigate()
     const [startDuration, setStartDuration] = useState(null);
     const [endDuration, setEndDuration] = useState(null);
-    const goBackAction = () => {
-        navigation("/admin/education")
-    }
 
+    const goBackAction = () => {
+        navigation("/admin/projects")
+    }
     const handleDateChange = (fiend, date, setFieldValue) => {
         const month = date.$M + 1
         const year = date.$y;
@@ -36,10 +35,11 @@ const ModifyEducation = () => {
     const onSubmitAction = (values) => {
         console.log(values);
     }
+
     return (
         <>
             <JumboCardQuick
-                title={"Add Education"}
+                title={"Add Projects"}
                 action={
                     <Button
                         size='small'
@@ -60,37 +60,28 @@ const ModifyEducation = () => {
             >
                 <Formik
                     initialValues={{
-                        field: "",
-                        board: "",
-                        institute: "",
+                        projectTitle: "",
+                        projectRole: "",
                         startDuration: "",
                         endDuration: "",
-                        state: "",
-                        city: "",
+                        description: "",
                     }}
                     validationSchema={Yup.object().shape({
-                        field: Yup
+                        projectTitle: Yup
                             .string()
-                            .required('Degree earned is required'),
-                        board: Yup
+                            .required('Project title is required'),
+                        projectRole: Yup
                             .string()
-                            .required('Board is required'),
-                        institute: Yup
-                            .string()
-                            .required('Institute is required'),
+                            .required('Project role is required'),
                         startDuration: Yup
                             .string()
-                            .required('Start year is required'),
+                            .required('Start Duration is required'),
                         endDuration: Yup
                             .string()
-                            .required('End year is required'),
-                        state: Yup
+                            .required('End Duration is required'),
+                        description: Yup
                             .string()
-                            .required('State is required'),
-                        city: Yup
-                            .string()
-                            .required('City year is required'),
-
+                            .required('Description is required'),
                     })}
                     onSubmit={onSubmitAction}
                 >
@@ -104,92 +95,55 @@ const ModifyEducation = () => {
                                         <TextField
                                             required
                                             fullWidth
-                                            id="field"
-                                            label="Degree Earned"
-                                            name='field'
-                                            placeholder='Bachelor of Science , Master of Business'
-                                            value={values.field}
+                                            id="projectTitle"
+                                            label="Project title"
+                                            name='projectTitle'
+                                            placeholder={"E-commerce Website Redesign"}
+                                            value={values.projectTitle}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            error={Boolean(errors.field) && touched.field}
-                                            helperText={Boolean(errors.field) && touched.field ? errors.field : ''}
+                                            error={Boolean(errors.projectTitle) && touched.projectTitle}
+                                            helperText={Boolean(errors.projectTitle) && touched.projectTitle ? errors.projectTitle : ''}
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={6}  >
                                         <TextField
                                             required
                                             fullWidth
-                                            id="institute"
-                                            label="Institute"
-                                            name='institute'
-                                            placeholder='college, university'
-                                            value={values.institute}
+                                            id="projectRole"
+                                            label="Project role"
+                                            name='projectRole'
+                                            placeholder={"Lead Front-End Developer"}
+                                            value={values.projectRole}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            error={Boolean(errors.institute) && touched.institute}
-                                            helperText={Boolean(errors.institute) && touched.institute ? errors.institute : ''}
+                                            error={Boolean(errors.projectRole) && touched.projectRole}
+                                            helperText={Boolean(errors.projectRole) && touched.projectRole ? errors.projectRole : ''}
                                         />
-                                    </Grid>
-                                    <Grid item xs={12} md={6}  >
-                                        <TextField
-                                            required
-                                            fullWidth
-                                            id="board"
-                                            label="Board"
-                                            name='board'
-                                            placeholder='GTU,'
-                                            value={values.board}
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            error={Boolean(errors.board) && touched.board}
-                                            helperText={Boolean(errors.board) && touched.board ? errors.board : ''}
-                                        />
-                                    </Grid>
-
-                                    <Grid item xs={12} >
-                                        <h3
-                                            style={{
-                                                marginBottom: "7px",
-                                                marginTop: "7px"
-                                            }}
-                                        >Education Place</h3>
                                     </Grid>
 
                                     <Grid item xs={12} md={6}  >
                                         <TextField
-                                            required
+                                            // required
                                             fullWidth
-                                            id="state"
-                                            label="State"
-                                            name='state'
-                                            value={values.state}
+                                            id="achievements"
+                                            label="Achievements"
+                                            name='achievements'
+                                            value={values.Achievements}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            error={Boolean(errors.state) && touched.state}
-                                            helperText={Boolean(errors.state) && touched.state ? errors.state : ''}
+                                            error={Boolean(errors.achievements) && touched.achievements}
+                                            helperText={Boolean(errors.achievements) && touched.achievements ? errors.achievements : ''}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} md={6} >
-                                        <TextField
-                                            required
-                                            fullWidth
-                                            id="city"
-                                            label="City"
-                                            name='city'
-                                            value={values.city}
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            error={Boolean(errors.city) && touched.city}
-                                            helperText={Boolean(errors.city) && touched.city ? errors.city : ''}
-                                        />
-                                    </Grid>
+
                                     <Grid item xs={12}  >
                                         <h3
                                             style={{
                                                 marginBottom: "7px",
                                                 marginTop: "7px"
                                             }}
-                                        >Education Duration </h3>
+                                        >Project Duration</h3>
                                     </Grid>
 
                                     <Grid item xs={12} md={6} >
@@ -230,6 +184,32 @@ const ModifyEducation = () => {
                                             />
                                         </LocalizationProvider>
                                     </Grid>
+
+                                    <Grid item xs={12}  >
+                                        <h3
+                                            style={{
+                                                marginBottom: "7px",
+                                                marginTop: "7px"
+                                            }}
+                                        >Project Description </h3>
+
+                                    </Grid>
+                                    <Grid item xs={12} >
+                                        <TextField
+                                            multiline
+                                            rows={4}
+                                            fullWidth
+                                            id="description"
+                                            label="Description"
+                                            name='description'
+                                            value={values.description}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            error={Boolean(errors.description) && touched.description}
+                                            helperText={Boolean(errors.description) && touched.description ? errors.description : ''}
+                                        />
+                                    </Grid>
+
                                 </Grid >
                                 <Grid
                                     container
@@ -254,9 +234,9 @@ const ModifyEducation = () => {
                         );
                     }}
                 </Formik >
-            </JumboCardQuick >
+            </JumboCardQuick>
         </>
     )
 }
 
-export default ModifyEducation;
+export default ModifyProjects;
