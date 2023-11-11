@@ -1,0 +1,22 @@
+.slick-list {
+    z-index: -1;
+}
+
+.slick-prev {
+    z-index: 10;
+    left: 10px;
+    color: #fff;
+    font-size: 20px;
+    /* padding: 10px; */
+}
+
+.slick-next {
+    z-index: 10;
+    right: 20px;
+    font-size: 20px;
+}
+
+.slick-next:hover {
+    /* background-color: #555; */
+    /* Change the background color on hover */
+}

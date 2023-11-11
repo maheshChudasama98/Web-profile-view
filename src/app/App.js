@@ -1,4 +1,5 @@
 import React, { Suspense } from "react";
+import "app/styles/app.css";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -20,7 +21,6 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { CircularProgress } from "@mui/material";
 
 
-import "app/styles/App.css";
 library.add(faHeart);
 
 const queryClient = new QueryClient({

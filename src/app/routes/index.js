@@ -3,7 +3,8 @@ import { Navigate } from "react-router-dom";
 import Page from "@jumbo/shared/Page";
 import WebView from "app/pages/webView/index";
 import UserProfile from "app/pages/users/user-profile/UserProfile";
-import loginPage from "app/pages/Login/LoginComponents";
+import LoginComponents from "app/pages/Auth/Login/LoginComponents";
+import SingUpComponents from "app/pages/Auth/SingUp/SingUpComponents";
 
 import company from "./company";
 
@@ -21,7 +22,11 @@ const routesForPublic = [
     },
     {
         path: "/login",
-        element: <Page component={loginPage} layout={"solo-page"} disableSmLogin={true} />
+        element: <Page component={LoginComponents} layout={"solo-page"} disableSmLogin={true} />
+    },
+    {
+        path: "/singup",
+        element: <Page component={SingUpComponents} layout={"solo-page"} disableSmLogin={true} />
     },
 ];
 

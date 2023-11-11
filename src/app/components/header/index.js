@@ -1,10 +1,10 @@
 import React from 'react'
-import './style.css'
+import 'app/styles/header.css'
 import Div from '@jumbo/shared/Div'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleHalfStroke } from '@fortawesome/free-solid-svg-icons';
 import { IconButton, Switch } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 import useJumboTheme from "@jumbo/hooks/useJumboTheme";
@@ -30,6 +30,9 @@ const Index = () => {
         break;
       case "profile":
         navigate('/profile');
+        break;
+      case "singup":
+        navigate('/singup');
         break;
       default:
         break;
@@ -59,15 +62,16 @@ const Index = () => {
     <>
       <Div className='header-main-div' >
         <Div className='header-name-div' >
-          <h1 className='web-name'>
+          {/* <h1 className='web-name'>
             Mahesh Chudasama
-          </h1>
+          </h1> */}
         </Div>
 
         <Div className='header-option-div'>
           <ul>
             <li>HOME</li>
             <li>About</li>
+            <li onClick={() => handleButtonClick("singup")}>Sing up </li>
             <li onClick={() => handleButtonClick("profile")}>Profile</li>
             <li onClick={() => handleButtonClick("login")}>Setting </li>
             <li>
@@ -75,8 +79,8 @@ const Index = () => {
                 checked={theme?.mode === "dark"}
                 onChange={handleModeChange}
                 name="header-fixed" />
-              <IconButton aria-label="Theme" size="small" onChange={handleModeChange}J>
-                <FontAwesomeIcon icon={faCircleHalfStroke} size='20px' />
+              <IconButton aria-label="Theme" size="small" onChange={handleModeChange} J>
+                <FontAwesomeIcon icon={faCircleHalfStroke} size='lg' />
               </IconButton>
             </li>
           </ul>

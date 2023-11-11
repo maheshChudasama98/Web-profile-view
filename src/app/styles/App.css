@@ -1,32 +1,35 @@
+/* Sweet alert */
 .swal2-container {
     z-index: 100000;
 }
 
-.slick-list {
-    z-index: -1;
+/* loader */
+.loader {
+    margin: auto;
+    width: 50px;
+    height: 50px;
 }
 
-.slick-prev {
-    z-index: 10;
-    left: 10px;
-    color: #fff;
-    font-size: 20px;
-    /* padding: 10px; */
+.overlay {
+    background: #ffffffc5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* opacity: 1; */
+    z-index: 99999;
 }
 
-.slick-next {
-    z-index: 10;
-    right: 20px;
-    font-size: 20px;
+.w-100 {
+    width: 100%;
 }
 
-
-.slick-next:hover {
-    /* background-color: #555; */
-    /* Change the background color on hover */
+.h-100 {
+    height: 100%;
 }
 
-.icon {
+.services-pre .icon {
     display: list-item;
     font-size: 70px;
     margin: 0 auto;
