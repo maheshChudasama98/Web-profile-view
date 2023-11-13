@@ -50,6 +50,10 @@ const userRoutes = [
         element: <Page component={ModifyExperience} />
     },
     {
+        path: "/admin/experience/edit",
+        element: <Page component={ModifyExperience} />
+    },
+    {
         path: "/admin/projects",
         element: <Page component={Projects} />
     },

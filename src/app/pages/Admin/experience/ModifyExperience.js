@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Formik } from 'formik';
@@ -9,12 +9,28 @@ import { faCircleChevronLeft, faGraduationCap } from '@fortawesome/free-solid-sv
 import JumboCardQuick from '@jumbo/components/JumboCardQuick';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import dayjs from 'dayjs';
+import { experienceModifyApi } from 'app/services/Admin/experience-services';
 
 const ModifyExperience = () => {
     const navigation = useNavigate()
+    const location = useLocation()
+    const dispatch = useDispatch()
+    const state = location?.state
+
     const [startDuration, setStartDuration] = useState(null);
     const [endDuration, setEndDuration] = useState(null);
+
+    useEffect(() => {
+        if (state !== null) {
+            const endDate = dayjs(`${state?.endYear}-${state?.endMonth}`);
+            const startDate = dayjs(`${state?.startYear}-${state?.startMonth}`);
+            setStartDuration(startDate);
+            setEndDuration(endDate);
+        }
+    }, []);
 
     const goBackAction = () => {
         navigation("/admin/experience")
@@ -33,7 +49,21 @@ const ModifyExperience = () => {
     };
 
     const onSubmitAction = (values) => {
-        console.log(values);
+        if (state !== null) {
+            values.experienceId = state?.experienceId
+        }
+        let startSplit = values.startDuration.split('-');
+        let endSplit = values.endDuration.split('-');
+        delete values.startDuration
+        delete values.endDuration
+        values.startMonth = startSplit[0]
+        values.startYear = startSplit[1]
+        values.endMonth = endSplit[0]
+        values.endYear = endSplit[1]
+
+        dispatch(experienceModifyApi(values, (res) => {
+            navigation("/admin/experience")
+        }))
     }
 
     return (
@@ -52,7 +82,6 @@ const ModifyExperience = () => {
                 headerSx={{
                     borderBottom: 1,
                     borderBottomColor: 'divider',
-
                     '& .MuiCardHeader-action': {
                         my: -.75
                     }
@@ -60,14 +89,14 @@ const ModifyExperience = () => {
             >
                 <Formik
                     initialValues={{
-                        jobTitle: "",
-                        companyName: "",
-                        position: "",
-                        location: "",
-                        achievements: "",
-                        startDuration: "",
-                        endDuration: "",
-                        description: "",
+                        jobTitle: state?.jobTitle || "",
+                        companyName: state?.companyName || "",
+                        position: state?.position || "",
+                        location: state?.location || "",
+                        // achievements: state?.achievements || "",
+                        startDuration: state !== null ? `${state?.startMonth}-${state?.startYear}` : "",
+                        endDuration: state !== null ? `${state?.endMonth}-${state?.endYear}` : "",
+                        description: state?.description || "",
                     }}
                     validationSchema={Yup.object().shape({
                         jobTitle: Yup
