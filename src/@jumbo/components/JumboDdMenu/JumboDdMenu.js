@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {IconButton, ListItemIcon, ListItemText, Menu, MenuItem} from "@mui/material";
-import {MoreHorizOutlined} from "@mui/icons-material";
+import { IconButton, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
+import { MoreHorizOutlined } from "@mui/icons-material";
 
-const JumboDdMenu = ({icon, menuItems, onClickCallback}) => {
+const JumboDdMenu = ({ icon, menuItems, item }) => {
     const [menuEl, setMenuEl] = React.useState(null);
     const openMenu = Boolean(menuEl);
 
     const handleMenuItemClick = (option) => {
         setMenuEl(null);
+        const { onClickCallback } = option;
         if (typeof onClickCallback === "function")
-            onClickCallback(option);
+            onClickCallback(option, item);
     };
 
     return (
@@ -25,26 +26,33 @@ const JumboDdMenu = ({icon, menuItems, onClickCallback}) => {
                 }}
             >
                 {
-                    icon ? icon : <MoreHorizOutlined/>
+                    icon ? icon : <MoreHorizOutlined />
                 }
             </IconButton>
             <Menu open={openMenu}
-                  anchorEl={menuEl}
-                  onClose={() => setMenuEl(null)}
+                anchorEl={menuEl}
+                onClose={() => setMenuEl(null)}
 
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
             >
                 {menuItems.map((option, index) => (
                     <MenuItem key={index} selected={option.title === 'Refresh'}
-                              onClick={(e) => {
-                                  handleMenuItemClick(option);
-                                  e.stopPropagation();
-                              }}
+                        onClick={(e) => {
+                            handleMenuItemClick(option);
+                            e.stopPropagation();
+                        }}
                     >
                         {
                             option.icon &&
-                            <ListItemIcon>{option.icon}</ListItemIcon>
+                            <ListItemIcon sx={{ color: option.title === "Delete" ? 'red' : "#92d050" }}>{option.icon}</ListItemIcon>
                         }
-
                         <ListItemText>{option.title}</ListItemText>
                     </MenuItem>
                 ))}

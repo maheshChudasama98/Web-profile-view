@@ -31,7 +31,7 @@ jwtAuthAxios.interceptors.response.use(
         const originalRequest = err.config;
         // console.log('originalrequest', err?.response?.status, err?.response.data);
         if (err?.response?.status === 400 || err?.response?.status === 500) {
-            return Promise.reject(err?.response?.data)
+            // return Promise.reject(err?.response?.data)
         }
         else if (err?.response?.status === 401) {
             localStorage.removeItem('token')

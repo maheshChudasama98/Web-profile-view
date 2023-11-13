@@ -1,24 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Box, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleChevronLeft, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import JumboCardQuick from '@jumbo/components/JumboCardQuick';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { educationModifyApi } from 'app/services/education-services';
+import { useDispatch } from 'react-redux';
+import dayjs from 'dayjs';
 
 const ModifyEducation = () => {
     const navigation = useNavigate()
+    const location = useLocation()
+    const dispatch = useDispatch()
+    const state = location?.state
+
     const [startDuration, setStartDuration] = useState(null);
     const [endDuration, setEndDuration] = useState(null);
     const goBackAction = () => {
         navigation("/admin/education")
     }
+
+    useEffect(() => {
+        if (state !== null) {
+            const endDate = dayjs(`${state?.endYear}-${state?.endMonth}`);
+            const startDate = dayjs(`${state?.startYear}-${state?.startMonth}`);
+            setStartDuration(startDate);
+            setEndDuration(endDate);
+        }
+    }, []);
 
     const handleDateChange = (fiend, date, setFieldValue) => {
         const month = date.$M + 1
@@ -34,8 +50,24 @@ const ModifyEducation = () => {
     };
 
     const onSubmitAction = (values) => {
-        console.log(values);
+        console.log("values", values);
+        if (state !== null) {
+            values.educationId = state?.educationId
+        }
+        let startSplit = values.startDuration.split('-');
+        let endSplit = values.endDuration.split('-');
+        delete values.startDuration
+        delete values.endDuration
+        values.startMonth = startSplit[0]
+        values.startYear = startSplit[1]
+        values.endMonth = endSplit[0]
+        values.endYear = endSplit[1]
+
+        dispatch(educationModifyApi(values, (res) => {
+            navigation("/admin/education")
+        }))
     }
+
     return (
         <>
             <JumboCardQuick
@@ -60,16 +92,16 @@ const ModifyEducation = () => {
             >
                 <Formik
                     initialValues={{
-                        field: "",
-                        board: "",
-                        institute: "",
-                        startDuration: "",
-                        endDuration: "",
-                        state: "",
-                        city: "",
+                        degreeName: state?.degreeName || "",
+                        board: state?.board || "",
+                        institute: state?.institute || "",
+                        startDuration: state !== null ? `${state?.startMonth}-${state?.startYear}` : "",
+                        endDuration: state !== null ? `${state?.endMonth}-${state?.endYear}` : "",
+                        state: state?.state || "",
+                        city: state?.city || "",
                     }}
                     validationSchema={Yup.object().shape({
-                        field: Yup
+                        degreeName: Yup
                             .string()
                             .required('Degree earned is required'),
                         board: Yup
@@ -104,15 +136,15 @@ const ModifyEducation = () => {
                                         <TextField
                                             required
                                             fullWidth
-                                            id="field"
+                                            id="degreeName"
                                             label="Degree Earned"
-                                            name='field'
+                                            name='degreeName'
                                             placeholder='Bachelor of Science , Master of Business'
-                                            value={values.field}
+                                            value={values.degreeName}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            error={Boolean(errors.field) && touched.field}
-                                            helperText={Boolean(errors.field) && touched.field ? errors.field : ''}
+                                            error={Boolean(errors.degreeName) && touched.degreeName}
+                                            helperText={Boolean(errors.degreeName) && touched.degreeName ? errors.degreeName : ''}
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={6}  >

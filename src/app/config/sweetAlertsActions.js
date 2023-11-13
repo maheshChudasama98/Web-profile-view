@@ -13,12 +13,31 @@ const sweetAlerts = (icon, message, theme) => {
     Toast.fire({
         icon: icon,
         title: message,
+    });
+};
 
-        // background: "yellow",
+const sweetAlertDelete = () => {
+    return Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        confirmButtonColor: '#92d050',
+        cancelButtonColor: 'red',
+        reverseButtons: true,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            return 'deleted';
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            return 'cancelled';
+        }
     });
 };
 
 
 export {
-    sweetAlerts
+    sweetAlerts,
+    sweetAlertDelete
 }

@@ -38,6 +38,10 @@ const userRoutes = [
         element: <Page component={ModifyEducation} />
     },
     {
+        path: "/admin/education/edit",
+        element: <Page component={ModifyEducation} />
+    },
+    {
         path: "/admin/experience",
         element: <Page component={Experience} />
     },

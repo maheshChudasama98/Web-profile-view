@@ -14,7 +14,7 @@ const JumboVerticalNavbar = ({ items }) => {
     }, [sidebarOptions.view, sidebarOptions.open]);
 
     let userRole = localStorage.getItem('user') === null ? "" : JSON.parse(localStorage.getItem('user')).user
-    console.log(userRole);
+    // console.log(userRole);
     const filter = () => {
         const filteredData = menusList.filter((item) => item.role.includes(userRole));
         setMenusList(filteredData);
