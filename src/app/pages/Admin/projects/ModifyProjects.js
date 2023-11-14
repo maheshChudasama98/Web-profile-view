@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Formik } from 'formik';
@@ -9,16 +9,33 @@ import { faCircleChevronLeft, faGraduationCap } from '@fortawesome/free-solid-sv
 import JumboCardQuick from '@jumbo/components/JumboCardQuick';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { projectModifyApi } from 'app/services/Admin/project-services';
+import dayjs from 'dayjs';
 
 const ModifyProjects = () => {
     const navigation = useNavigate()
+    const location = useLocation()
+    const dispatch = useDispatch()
+    const state = location?.state
+
     const [startDuration, setStartDuration] = useState(null);
     const [endDuration, setEndDuration] = useState(null);
 
     const goBackAction = () => {
         navigation("/admin/projects")
     }
+
+    useEffect(() => {
+        if (state !== null) {
+            const endDate = dayjs(`${state?.endYear}-${state?.endMonth}`);
+            const startDate = dayjs(`${state?.startYear}-${state?.startMonth}`);
+            setStartDuration(startDate);
+            setEndDuration(endDate);
+        }
+    }, []);
+
     const handleDateChange = (fiend, date, setFieldValue) => {
         const month = date.$M + 1
         const year = date.$y;
@@ -33,7 +50,21 @@ const ModifyProjects = () => {
     };
 
     const onSubmitAction = (values) => {
-        console.log(values);
+        if (state !== null) {
+            values.projectId = state?.projectId
+        }
+        let startSplit = values.startDuration.split('-');
+        let endSplit = values.endDuration.split('-');
+        delete values.startDuration
+        delete values.endDuration
+        values.startMonth = startSplit[0]
+        values.startYear = startSplit[1]
+        values.endMonth = endSplit[0]
+        values.endYear = endSplit[1]
+
+        dispatch(projectModifyApi(values, (res) => {
+            navigation("/admin/projects")
+        }))
     }
 
     return (
@@ -60,14 +91,14 @@ const ModifyProjects = () => {
             >
                 <Formik
                     initialValues={{
-                        projectTitle: "",
-                        projectRole: "",
-                        startDuration: "",
-                        endDuration: "",
-                        description: "",
+                        projectName: state?.projectName || "",
+                        projectRole: state?.projectRole || "",
+                        startDuration: state !== null ? `${state?.startMonth}-${state?.startYear}` : "",
+                        endDuration: state !== null ? `${state?.endMonth}-${state?.endYear}` : "",
+                        description: state?.description || "",
                     }}
                     validationSchema={Yup.object().shape({
-                        projectTitle: Yup
+                        projectName: Yup
                             .string()
                             .required('Project title is required'),
                         projectRole: Yup
@@ -95,15 +126,15 @@ const ModifyProjects = () => {
                                         <TextField
                                             required
                                             fullWidth
-                                            id="projectTitle"
+                                            id="projectName"
                                             label="Project title"
-                                            name='projectTitle'
+                                            name='projectName'
                                             placeholder={"E-commerce Website Redesign"}
-                                            value={values.projectTitle}
+                                            value={values.projectName}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            error={Boolean(errors.projectTitle) && touched.projectTitle}
-                                            helperText={Boolean(errors.projectTitle) && touched.projectTitle ? errors.projectTitle : ''}
+                                            error={Boolean(errors.projectName) && touched.projectName}
+                                            helperText={Boolean(errors.projectName) && touched.projectName ? errors.projectName : ''}
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={6}  >
@@ -129,7 +160,7 @@ const ModifyProjects = () => {
                                             id="achievements"
                                             label="Achievements"
                                             name='achievements'
-                                            value={values.Achievements}
+                                            value={values.achievements}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             error={Boolean(errors.achievements) && touched.achievements}

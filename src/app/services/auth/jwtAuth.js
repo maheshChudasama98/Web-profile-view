@@ -1,7 +1,7 @@
 import jwtAxios from "axios";
 
 const jwtAuthAxios = jwtAxios.create({
-    baseURL: "http://localhost:8080/api/",
+    baseURL: "http://192.168.127.222:8080/api/",
     headers: {
         'Content-Type': 'application/json'
     }

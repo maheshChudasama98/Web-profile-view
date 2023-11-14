@@ -62,6 +62,10 @@ const userRoutes = [
         element: <Page component={ModifyProjects} />
     },
     {
+        path: "/admin/project/edit",
+        element: <Page component={ModifyProjects} />
+    },
+    {
         path: "/admin/technical/skills",
         element: <Page component={TechnicalSkills} />
     },

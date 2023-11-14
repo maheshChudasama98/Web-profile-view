@@ -50,7 +50,6 @@ const ModifyEducation = () => {
     };
 
     const onSubmitAction = (values) => {
-        console.log("values", values);
         if (state !== null) {
             values.educationId = state?.educationId
         }
