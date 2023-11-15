@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Formik } from 'formik';
@@ -7,34 +7,59 @@ import { Box, Grid } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleChevronLeft, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import JumboCardQuick from '@jumbo/components/JumboCardQuick';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import dayjs from 'dayjs';
+import { useDispatch } from 'react-redux';
+import { companyModifyApi } from 'app/services/Admin/company-services';
+
 
 const ModifyCompany = () => {
     const navigation = useNavigate()
+    const dispatch = useDispatch()
+    const location = useLocation()
+    const state = location?.state
+
     const [startDuration, setStartDuration] = useState(null);
     const [endDuration, setEndDuration] = useState(null);
+
     const goBackAction = () => {
         navigation("/admin/companies")
     }
 
+    useEffect(() => {
+        if (state !== null) {
+            const startDate = dayjs().set('year', Number(state.startYear));
+            setStartDuration(startDate);
+            if (state?.endYear) {
+                const endDate = dayjs(state?.endYear);
+                setEndDuration(endDate);
+            }
+        }
+    }, []);
+
+
     const handleDateChange = (fiend, date, setFieldValue) => {
-        const month = date.$M + 1
         const year = date.$y;
-        const combinedDate = `${month}-${year}`;
         if (fiend === "endDuration") {
             setEndDuration(date)
-            setFieldValue("endDuration", combinedDate)
+            setFieldValue("endDuration", year)
         } else if (fiend === "startDuration") {
             setStartDuration(date)
-            setFieldValue("startDuration", combinedDate)
+            setFieldValue("startDuration", year)
         }
     };
 
     const onSubmitAction = (values) => {
-        console.log(values);
+        if (state !== null) {
+            values.companyId = state?.companyId
+        }
+        values.startYear = values.startDuration
+        delete values.startDuration
+
+        dispatch(companyModifyApi(values, (res) => { goBackAction() }))
     }
     return (
         <>
@@ -60,13 +85,14 @@ const ModifyCompany = () => {
             >
                 <Formik
                     initialValues={{
-                        companyName: "",
-                        companySize: "",
-                        location: "",
-                        description: "",
-                        startDuration: "",
-                        email: "",
+                        companyName: state?.companyName || "",
+                        companySize: state?.companySize || "",
+                        state: state?.state || "",
+                        city: state?.city || "",
+                        startDuration: state !== null ? state?.startYear : "",
+                        companyEmail: state?.companyEmail || "",
                     }}
+
                     validationSchema={Yup.object().shape({
                         companyName: Yup
                             .string()
@@ -74,12 +100,18 @@ const ModifyCompany = () => {
                         companySize: Yup
                             .string()
                             .required('Company Size is required'),
-                        location: Yup
+                        state: Yup
                             .string()
-                            .required('Location is required'),
+                            .required('State is required'),
+                        city: Yup
+                            .string()
+                            .required('city is required'),
                         startDuration: Yup
                             .string()
                             .required('Start is required'),
+                        companyEmail: Yup
+                            .string()
+                            .required('Email is required'),
                     })}
                     onSubmit={onSubmitAction}
                 >
@@ -88,6 +120,9 @@ const ModifyCompany = () => {
 
                         return (
                             <>
+                                {
+                                    console.log(values, "------------")
+                                }
                                 <Grid container spacing={1.5} >
                                     <Grid item xs={12}   >
                                         <TextField
@@ -123,15 +158,15 @@ const ModifyCompany = () => {
                                         <TextField
                                             required
                                             fullWidth
-                                            id="board"
-                                            label="Board"
-                                            name='board'
+                                            id="companyEmail"
+                                            label="Company Email"
+                                            name='companyEmail'
                                             placeholder='GTU,'
-                                            value={values.board}
+                                            value={values.companyEmail}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            error={Boolean(errors.board) && touched.board}
-                                            helperText={Boolean(errors.board) && touched.board ? errors.board : ''}
+                                            error={Boolean(errors.companyEmail) && touched.companyEmail}
+                                            helperText={Boolean(errors.companyEmail) && touched.companyEmail ? errors.companyEmail : ''}
                                         />
                                     </Grid>
 
@@ -185,7 +220,7 @@ const ModifyCompany = () => {
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DatePicker
                                                 label={'Start *'}
-                                                views={['month', 'year']}
+                                                views={['year']}
                                                 slotProps={{
                                                     textField: {
                                                         fullWidth: true,
@@ -196,11 +231,11 @@ const ModifyCompany = () => {
                                                 }}
                                                 value={startDuration}
                                                 onChange={(date) => handleDateChange("startDuration", date, setFieldValue)}
-                                                maxDate={endDuration}
+                                            // maxDate={endDuration}
                                             />
                                         </LocalizationProvider>
                                     </Grid>
-                                    <Grid item xs={12} md={6} >
+                                    {/* <Grid item xs={12} md={6} >
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DatePicker
                                                 label={'End *'}
@@ -218,7 +253,7 @@ const ModifyCompany = () => {
                                                 }}
                                             />
                                         </LocalizationProvider>
-                                    </Grid>
+                                    </Grid> */}
                                 </Grid >
                                 <Grid
                                     container

@@ -1,13 +1,13 @@
 import jwtAxios from "axios";
 
 const jwtAuthAxios = jwtAxios.create({
-    baseURL: "http://192.168.127.222:8080/api/",
+    baseURL: "http://localhost:8080/api/",
     headers: {
         'Content-Type': 'application/json'
     }
 });
 
-jwtAuthAxios.interceptors.request.use(
+jwtAuthAxios.interceptors.request.use(  
     function (config) {
         config.headers = {
             ...config.headers

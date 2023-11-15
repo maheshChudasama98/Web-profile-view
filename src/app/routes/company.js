@@ -90,6 +90,10 @@ const userRoutes = [
         element: <Page component={ModifyCompany} />
     },
     {
+        path: "/admin/company/edit",
+        element: <Page component={ModifyCompany} />
+    },
+    {
         path: "/admin/setting",
         element: <Page component={Setting} />
     },
