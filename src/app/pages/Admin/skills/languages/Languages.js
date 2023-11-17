@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { faGraduationCap, faMicrochip, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faGraduationCap, faLanguage, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import JumboCardQuick from '@jumbo/components/JumboCardQuick'
 import JumboScrollbar from '@jumbo/components/JumboScrollbar'
@@ -13,14 +13,14 @@ import Div from '@jumbo/shared/Div'
 import JumboDdMenu from '@jumbo/components/JumboDdMenu'
 
 
-const TechnicalSkills = () => {
+const Languages = () => {
     const dispatch = useDispatch()
     const navigation = useNavigate()
     const [skillList, setSkillList] = useState([])
 
 
     const skillListFetchApiAction = () => {
-        dispatch(skillsFetchListApi({ skillType: "Technical" }, (res) => {
+        dispatch(skillsFetchListApi({ skillType: "Language" }, (res) => {
             setSkillList(res)
         }))
     }
@@ -29,8 +29,8 @@ const TechnicalSkills = () => {
         skillListFetchApiAction()
     }, [])
 
-    const navigationAction = () => navigation("/admin/skills/technical/create")
-    const editAction = (option, state) => navigation(`/admin/skills/technical/edit`, { state })
+    const navigationAction = () => navigation("/admin/skills/language/create")
+    const editAction = (option, state) => navigation(`/admin/skills/language/edit`, { state })
 
     const deleteAction = (option, item) => {
         sweetAlertDelete().then((result) => {
@@ -63,13 +63,13 @@ const TechnicalSkills = () => {
 
     return (
         <JumboCardQuick
-            title={"Technical skills"}
+            title={"Languages"}
             action={
                 <Button
                     size='small'
                     onClick={navigationAction}
                     variant="contained"
-                    startIcon={<FontAwesomeIcon icon={faMicrochip} />}>
+                    startIcon={<FontAwesomeIcon icon={faLanguage} />}>
                     Add
                 </Button>
             }
@@ -112,4 +112,4 @@ const TechnicalSkills = () => {
     )
 }
 
-export default TechnicalSkills
+export default Languages

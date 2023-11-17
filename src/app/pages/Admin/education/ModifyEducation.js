@@ -11,7 +11,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { educationModifyApi } from 'app/services/education-services';
+import { educationModifyApi } from 'app/services/Admin/education-services';
 import { useDispatch } from 'react-redux';
 import dayjs from 'dayjs';
 

@@ -15,9 +15,17 @@ import Companies from "app/pages/Admin/companies/Companies";
 import ModifyCompany from "app/pages/Admin/companies/ModifyCompany";
 
 import TechnicalSkills from "app/pages/Admin/skills/technicalSkills/TechnicalSkills";
+import ModifyTechnicalSkills from "app/pages/Admin/skills/technicalSkills/ModifyTechnicalSkills";
+
 import SoftSkills from "app/pages/Admin/skills/softSkills/SoftSkills";
+import ModifySoftSkills from "app/pages/Admin/skills/softSkills/ModifySoftSkills";
+
 import Languages from "app/pages/Admin/skills/languagesSkills/Languages";
+import ModifyLanguage from "app/pages/Admin/skills/languagesSkills/ModifyLanguage";
+
 import Certificate from "app/pages/Admin/skills/certificate/Certificate";
+import ModifyCertificate from "app/pages/Admin/skills/certificate/ModifyCertificate";
+
 import Setting from "app/pages/Admin/setting/Setting";
 
 const userRoutes = [
@@ -66,19 +74,43 @@ const userRoutes = [
         element: <Page component={ModifyProjects} />
     },
     {
-        path: "/admin/technical/skills",
+        path: "/admin/skills/technical",
         element: <Page component={TechnicalSkills} />
     },
     {
-        path: "/admin/soft/skills",
+        path: "/admin/skills/technical/create",
+        element: <Page component={ModifyTechnicalSkills} />
+    },
+    {
+        path: "/admin/skills/technical/edit",
+        element: <Page component={ModifyTechnicalSkills} />
+    },
+    {
+        path: "/admin/skills/soft",
         element: <Page component={SoftSkills} />
     },
     {
-        path: "/admin/languages/skills",
+        path: "/admin/skills/soft/create",
+        element: <Page component={SoftSkills} />
+    },
+    {
+        path: "/admin/skills/soft/edit",
+        element: <Page component={SoftSkills} />
+    },
+    {
+        path: "/admin/skills/languages",
         element: <Page component={Languages} />
     },
     {
-        path: "/admin/certificate",
+        path: "/admin/skills/language/create",
+        element: <Page component={Languages} />
+    },
+    {
+        path: "/admin/skills/language/edit",
+        element: <Page component={Languages} />
+    },
+    {
+        path: "/admin/skills/certificate",
         element: <Page component={Certificate} />
     },
     {

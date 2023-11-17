@@ -8,7 +8,7 @@ import { Button, Card, CardContent, Divider, Grid, IconButton, Stack, Typography
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { educationDeleteApi, educationFetchListApi } from 'app/services/education-services'
+import { educationDeleteApi, educationFetchListApi } from 'app/services/Admin/education-services'
 import { useEffect } from 'react'
 import ListCard from 'app/components/Cards/ListCard'
 import Div from '@jumbo/shared/Div'

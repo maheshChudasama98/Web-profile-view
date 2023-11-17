@@ -1,4 +1,4 @@
-import { faGraduationCap, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faBuilding, faGraduationCap, faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import JumboButton from '@jumbo/components/JumboButton'
 import JumboCardQuick from '@jumbo/components/JumboCardQuick'
@@ -90,7 +90,7 @@ const Companies = () => {
             size='small'
             onClick={companyAddAction}
             variant="contained"
-            startIcon={<FontAwesomeIcon icon={faGraduationCap} />}>
+            startIcon={<FontAwesomeIcon icon={faBuilding} />}>
             Add
           </Button>
         }

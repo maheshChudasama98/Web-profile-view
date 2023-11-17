@@ -53,25 +53,25 @@ let menus = [
         icon: <StreamOutlinedIcon sx={{ fontSize: 20 }} />,
         children: [
             {
-                uri: "/admin/technical/skills",
+                uri: "/admin/skills/technical",
                 label: 'Technical Skills',
                 type: "nav-item",
                 // icon: <HistoryToggleOffIcon sx={{ fontSize: 20 }} />
             },
             {
-                uri: "/admin/soft/skills",
+                uri: "/admin/skills/soft",
                 label: 'Soft Skills',
                 type: "nav-item",
                 // icon: <HistoryToggleOffIcon sx={{ fontSize: 20 }} />
             },
             {
-                uri: "/admin/languages/skills",
+                uri: "/admin/skills/languages",
                 label: 'Languages',
                 type: "nav-item",
                 // icon: <HistoryToggleOffIcon sx={{ fontSize: 20 }} />
             },
             {
-                uri: "/admin/certificate",
+                uri: "/admin/skills/certificate",
                 label: 'Certificate',
                 type: "nav-item",
                 // icon: <HistoryToggleOffIcon sx={{ fontSize: 20 }} />

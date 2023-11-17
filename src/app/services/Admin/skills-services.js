@@ -1,12 +1,12 @@
-import jwtAuthAxios from "./auth/jwtAuth";
+import jwtAuthAxios from "../auth/jwtAuth";
 import { FETCH_ERROR, FETCH_START, FETCH_SUCCESS, SHOW_MESSAGE } from "app/utils/constants/reduxActions";
 import { errorHandler } from "app/helper/apiErrorHandler";
 
-export const educationModifyApi = (data, cb) => {
+export const skillModifyApi = (data, cb) => {
     return (dispatch) => {
         dispatch({ type: FETCH_START });
         jwtAuthAxios.defaults.headers.common['authorization'] = localStorage.getItem('token');
-        jwtAuthAxios.post('education/modify', data).then((res) => {
+        jwtAuthAxios.post('skill/modify', data).then((res) => {
             if (res.data.status) {
                 dispatch({ type: FETCH_SUCCESS });
                 dispatch({ type: SHOW_MESSAGE, payload: res.data.message });
@@ -20,11 +20,11 @@ export const educationModifyApi = (data, cb) => {
     }
 }
 
-export const educationFetchListApi = (cb) => {
+export const skillsFetchListApi = (type, cb) => {
     return (dispatch) => {
         dispatch({ type: FETCH_START });
         jwtAuthAxios.defaults.headers.common['authorization'] = localStorage.getItem('token');
-        jwtAuthAxios.get('education/list').then((res) => {
+        jwtAuthAxios.post('skill/list', type).then((res) => {
             if (res.data.status) {
                 dispatch({ type: FETCH_SUCCESS });
                 if (cb) cb(res.data.data)
@@ -37,11 +37,11 @@ export const educationFetchListApi = (cb) => {
     }
 }
 
-export const educationDeleteApi = (id, cb) => {
+export const skillDeleteApi = (id, cb) => {
     return (dispatch) => {
         dispatch({ type: FETCH_START });
         jwtAuthAxios.defaults.headers.common['authorization'] = localStorage.getItem('token');
-        jwtAuthAxios.delete(`education/remove/${id}`).then((res) => {
+        jwtAuthAxios.delete(`skill/remove/${id}`).then((res) => {
             if (res.data.status) {
                 dispatch({ type: FETCH_SUCCESS });
                 dispatch({ type: SHOW_MESSAGE, payload: res.data.message });
