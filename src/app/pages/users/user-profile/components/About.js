@@ -4,7 +4,7 @@ import React from 'react';
 // import TabList from "@mui/lab/TabList";
 // import Tab from "@mui/material/Tab";
 import List from "@mui/material/List";
-import {AvatarGroup, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
+import { AvatarGroup, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import CakeOutlinedIcon from "@mui/icons-material/CakeOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
@@ -14,10 +14,10 @@ import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";
 import JumboCardQuick from "@jumbo/components/JumboCardQuick";
 import styled from "@emotion/styled";
-import {ASSET_AVATARS} from "../../../../utils/constants/paths";
-import {getAssetPath} from "../../../../utils/appHelpers";
+import { ASSET_AVATARS } from "../../../../utils/constants/paths";
+import { getAssetPath } from "../../../../utils/appHelpers";
 
-const StyledListItemIcon = styled(ListItemIcon)(({theme}) => ({
+const StyledListItemIcon = styled(ListItemIcon)(({ theme }) => ({
     color: theme.palette.primary.main,
     fontSize: 24,
     height: 48,
@@ -62,7 +62,7 @@ const About = () => {
             headerSx={{
                 // borderBottom: 1, borderColor: 'divider'
             }}
-            sx={{mb: 3.75}}
+            sx={{ mb: 3.75 }}
 
         >
             <List
@@ -75,40 +75,40 @@ const About = () => {
             >
                 <ListItem
                     sx={{
-                        width: {xs: '100%', sm: '50%', xl: '33.33%'}
+                        width: { xs: '100%', sm: '50%', xl: '33.33%' }
                     }}
                 >
                     <StyledListItemIcon>
-                        <ApartmentIcon fontSize={"inherit"}/>
+                        <ApartmentIcon fontSize={"inherit"} />
                     </StyledListItemIcon>
                     <ListItemText
                         primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary" mb={.5}>
                             Works at</Typography>}
                         secondary={<Typography variant="body1" color="text.primary">
-                            G-axon Tech Pvt. Ltd.</Typography>}
+                            Plusinfosys</Typography>}
                     />
                 </ListItem>
                 <ListItem
                     sx={{
-                        width: {xs: '100%', sm: '50%', xl: '33.33%'}
+                        width: { xs: '100%', sm: '50%', xl: '33.33%' }
                     }}
                 >
                     <StyledListItemIcon>
-                        <CakeOutlinedIcon fontSize={"inherit"}/>
+                        <CakeOutlinedIcon fontSize={"inherit"} />
                     </StyledListItemIcon>
                     <ListItemText
                         primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary"
-                                             mb={.5}>Birthday</Typography>}
-                        secondary={<Typography variant="body1" color="text.primary">Oct 25, 1984</Typography>}
+                            mb={.5}>Birthday</Typography>}
+                        secondary={<Typography variant="body1" color="text.primary">Sep 29, 1998</Typography>}
                     />
                 </ListItem>
                 <ListItem
                     sx={{
-                        width: {xs: '100%', sm: '50%', xl: '33.33%'}
+                        width: { xs: '100%', sm: '50%', xl: '33.33%' }
                     }}
                 >
                     <StyledListItemIcon>
-                        <SchoolOutlinedIcon fontSize={"inherit"}/>
+                        <SchoolOutlinedIcon fontSize={"inherit"} />
                     </StyledListItemIcon>
                     <ListItemText
                         primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary" mb={.5}>Went
@@ -118,57 +118,15 @@ const About = () => {
                 </ListItem>
                 <ListItem
                     sx={{
-                        width: {xs: '100%', sm: '50%', xl: '33.33%'}
+                        width: { xs: '100%', sm: '50%', xl: '33.33%' }
                     }}
                 >
                     <StyledListItemIcon>
-                        <CottageOutlinedIcon fontSize={"inherit"}/>
+                        <CottageOutlinedIcon fontSize={"inherit"} />
                     </StyledListItemIcon>
                     <ListItemText
-                        primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary" mb={.5}>Lives in
-                            London</Typography>}
-                        secondary={<Typography variant="body1" color="text.primary">From Switzerland</Typography>}
-                    />
-                </ListItem>
-                <ListItem
-                    sx={{
-                        width: {xs: '100%', xl: '66.67%'}
-                    }}
-                >
-                    <StyledListItemIcon>
-                        <GroupsOutlinedIcon fontSize={"inherit"}/>
-                    </StyledListItemIcon>
-                    <ListItemText
-                        primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary" mb={.5}>4 Family
-                            Members</Typography>}
-                        secondary={
-                            <Typography component={"div"} variant={'body1'}>
-                                <Stack
-                                    direction={"row"}
-                                    flexWrap={"wrap"}
-                                    sx={{}}
-                                >
-                                    <AvatarGroup
-                                        max={5}
-                                        sx={{
-                                            '.MuiAvatar-root': {
-                                                height: 32,
-                                                width: 32,
-                                                fontSize: 13,
-                                                background: theme => theme.palette.grey[600]
-                                            }
-                                        }}
-                                    >
-                                        <Avatar alt="Remy Sharp" src={getAssetPath(`${ASSET_AVATARS}/avatar6.jpg`,"32x32")}/>
-                                        <Avatar alt="Remy Sharp" src={getAssetPath(`${ASSET_AVATARS}/avatar5.jpg`,"32x32")}/>
-                                        <Avatar alt="Remy Sharp" src={getAssetPath(`${ASSET_AVATARS}/avatar3.jpg`,"32x32")}/>
-                                        <Avatar alt="Remy Sharp" src={getAssetPath(`${ASSET_AVATARS}/avatar4.jpg`,"32x32")}/>
-                                        <Avatar alt="Remy Sharp" src={getAssetPath(`${ASSET_AVATARS}/avatar7.jpg`,"32x32")}/>
-                                        <Avatar alt="Remy Sharp" src={getAssetPath(`${ASSET_AVATARS}/avatar8.jpg`,"32x32")}/>
-                                    </AvatarGroup>
-                                </Stack>
-                            </Typography>
-                        }
+                        primary={<Typography fontSize={"12px"} variant="h6" color="text.secondary" mb={.5}>Lives in</Typography>}
+                        secondary={<Typography variant="body1" color="text.primary">From Rajkot</Typography>}
                     />
                 </ListItem>
             </List>

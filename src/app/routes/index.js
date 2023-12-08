@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import Page from "@jumbo/shared/Page";
 import WebView from "app/pages/webView/index";
 import UserProfile from "app/pages/users/user-profile/UserProfile";
@@ -13,8 +13,6 @@ import experienceRoutes from "app/routes/admin/experience.routes";
 import projectsRoutes from "app/routes/admin/projects.routes";
 import settingRoutes from "app/routes/admin/setting.routes";
 import skillsRoutes from "app/routes/admin/skills.routes";
-
-
 
 // import company from "./company";
 

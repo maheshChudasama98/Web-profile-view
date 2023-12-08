@@ -79,9 +79,9 @@ const Index = () => {
                 checked={theme?.mode === "dark"}
                 onChange={handleModeChange}
                 name="header-fixed" />
-              <IconButton aria-label="Theme" size="small" onChange={handleModeChange} J>
+              {/* <IconButton aria-label="Theme" size="small" onChange={handleModeChange} J>
                 <FontAwesomeIcon icon={faCircleHalfStroke} size='lg' />
-              </IconButton>
+              </IconButton> */}
             </li>
           </ul>
         </Div>

@@ -22,22 +22,22 @@ const Index = () => {
           <h1>Footer</h1>
 
           <Grid container spacing={1.5} >
-            <Grid item xs={12} sx={6} md={3} lg={3}>
+            <Grid item xs={12} sm={6} md={3} lg={3}>
               <h2>
                 OPT TIMINGS
               </h2>
             </Grid>
-            <Grid item xs={12} sx={6} md={3} lg={3}>
+            <Grid item xs={12} sm={6} md={3} lg={3}>
               <h2>
                 EMERGENCY NO.
               </h2>
             </Grid>
-            <Grid item xs={12} sx={6} md={3} lg={3}>
+            <Grid item xs={12} sm={6} md={3} lg={3}>
               <h2>
                 NEWS & MEDIA
               </h2>
             </Grid>
-            <Grid item xs={12} sx={6} md={3} lg={3}>
+            <Grid item xs={12} sm={6} md={3} lg={3}>
               <h2>
                 SPECIALITIES
               </h2>
@@ -49,7 +49,7 @@ const Index = () => {
               borderTop: 1,
             }}>
           </Div>
-          <h5 color={theme => theme.palette.text.primary}>Copyright Mahesh Chudasama 2023. All Rights Reserved.</h5>
+          <h5 >Copyright Mahesh Chudasama 2023. All Rights Reserved.</h5>
         </Div>
       </Div>
     </>

@@ -28,14 +28,13 @@ const index = () => {
                 {
                     technologyList.map((item, key) => {
                         return (
-                            <>
-                                <Grid item xs={12} sm={6} md={4}  >
-                                    <Technology
-                                        title={item.title}
-                                        icon={item.icon}
-                                        value={item.value} />
-                                </Grid>
-                            </>)
+                            <Grid key={key} item xs={12} sm={6} md={4}  >
+                                <Technology
+                                    title={item.title}
+                                    icon={item.icon}
+                                    value={item.value} />
+                            </Grid>
+                        )
                     })
                 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from "./Header";
 import HeaderMain from "app/components/header";
 import JumboContentLayout from "@jumbo/components/JumboContentLayout";
@@ -6,24 +6,35 @@ import useJumboTheme from "@jumbo/hooks/useJumboTheme";
 // import Events from "../../../shared/widgets/Events";
 import { alpha } from "@mui/material/styles";
 import About from "./components/About";
-import Biography from "./components/Biography";
 import UserProfileSidebar from "./UserProfileSidebar";
 import Footer from "app/components/footer";
 import { ASSET_IMAGES } from "../../../utils/constants/paths";
 import { getAssetPath } from "../../../utils/appHelpers";
 import { useJumboContentLayout } from '@jumbo/hooks';
 import Education from './components/Education';
+import { useDispatch } from 'react-redux';
+import { webProfileFetchApi } from 'app/services/web-services';
+import Experience from './components/Experience';
 
 
 const UserProfile = () => {
+    const dispatch = useDispatch()
     const { theme } = useJumboTheme();
     const contentLayout = useJumboContentLayout();
+    const [fetchList, setFetchList] = useState([]);
+
+    useEffect(() => {
+        dispatch(webProfileFetchApi((res) => {
+            setFetchList(res.data[0]);
+        }))
+    }, [])
+
     return (
         <>
-            <HeaderMain />
+            {/* <HeaderMain /> */}
             <JumboContentLayout
                 header={<Header />}
-                sidebar={<UserProfileSidebar />}
+                sidebar={<UserProfileSidebar skills={fetchList?.Skills} />}
                 footer={<Footer />}
                 layoutOptions={{
                     header: {
@@ -76,8 +87,9 @@ const UserProfile = () => {
                 }}
             >
                 <About />
-                <Biography />
-                <Education />
+                <Education item={fetchList?.Education} />
+                <Experience item={fetchList?.Experiences} />
+                {/* <Biography /> */}
             </JumboContentLayout>
         </>
     );

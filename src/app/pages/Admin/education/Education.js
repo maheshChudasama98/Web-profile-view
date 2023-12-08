@@ -113,40 +113,38 @@ const Education = () => {
                     {
                         educationList && educationList.length > 0 && educationList.map((item, key) => {
                             return (
-                                <>
-                                    <ListCard >
-                                        {/* <Stack
+                                <ListCard key={key} >
+                                    {/* <Stack
                                             direction={"row"}
                                             divider={<Divider orientation="vertical" flexItem />}
                                             spacing={1}
                                             sx={{ mb: 2 }}
                                         >
                                         </Stack> */}
-                                        <Div sx={{ display: "flex", justifyContent: "space-between" }}>
-                                            <Typography variant={"h4"} color={"primary.main"} >{item?.degreeName}</Typography>
-                                            <Div>
-                                                <JumboDdMenu
-                                                    menuItems={menuItems}
-                                                    item={item}
-                                                    icon={<MoreVertIcon fontSize='20px' />} />
+                                    <Div sx={{ display: "flex", justifyContent: "space-between" }}>
+                                        <Typography variant={"h4"} color={"primary.main"} >{item?.degreeName}</Typography>
+                                        <Div>
+                                            <JumboDdMenu
+                                                menuItems={menuItems}
+                                                item={item}
+                                                icon={<MoreVertIcon fontSize='20px' />} />
 
-                                            </Div>
                                         </Div>
+                                    </Div>
 
 
-                                        <Typography variant={"h6"} color={"text.secondary"} >{item?.institute}</Typography>
-                                        <Typography variant={"h6"} color={"text.secondary"} >Board-{item?.board}</Typography>
+                                    <Typography variant={"h6"} color={"text.secondary"} >{item?.institute}</Typography>
+                                    <Typography variant={"h6"} color={"text.secondary"} >Board-{item?.board}</Typography>
 
-                                        <Div sx={{ display: "flex", justifyContent: "space-between" }}>
-                                            <Typography variant={"h6"} color={"text.secondary"} >{item?.state}, {item?.city} </Typography>
-                                            <Typography
-                                                variant={"h6"}
-                                                color={"text.secondary"} >
-                                                ( {monthNames[item?.startMonth]}-{item?.startYear} to {monthNames[item?.endMonth]}-{item?.endYear} )
-                                            </Typography>
-                                        </Div>
-                                    </ListCard>
-                                </>
+                                    <Div sx={{ display: "flex", justifyContent: "space-between" }}>
+                                        <Typography variant={"h6"} color={"text.secondary"} >{item?.state}, {item?.city} </Typography>
+                                        <Typography
+                                            variant={"h6"}
+                                            color={"text.secondary"} >
+                                            ( {monthNames[item?.startMonth]}-{item?.startYear} to {monthNames[item?.endMonth]}-{item?.endYear} )
+                                        </Typography>
+                                    </Div>
+                                </ListCard>
                             )
                         })
 

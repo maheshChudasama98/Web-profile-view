@@ -1,84 +1,38 @@
 import React from 'react';
-import {Typography} from "@mui/material";
+import { Typography } from "@mui/material";
 import Span from "@jumbo/shared/Span";
 import Stack from "@mui/material/Stack";
 import JumboCardQuick from "@jumbo/components/JumboCardQuick";
 import styled from "@mui/material/styles/styled";
 import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
-import {alpha} from "@mui/material/styles";
-import {friendsData} from "./data";
+import { alpha } from "@mui/material/styles";
+import { faCircleDot, } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const StyledBadge = styled(Badge)(({theme}) => ({
-    paddingBottom: '75%',
-    display: 'flex',
+import Div from '@jumbo/shared/Div';
+import Brightness1Icon from '@mui/icons-material/Brightness1';
 
-    '& .MuiBadge-badge': {
-        top: '15px',
-        right: '14px',
-        boxShadow: `0 0 0 1px ${theme.palette.common.white}`,
-    }
-}));
-const StyledAvatar = styled(Avatar)(({theme}) => ({
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    borderRadius: 8,
-
-    '&::after': {
-        content: "''",
-        position: 'absolute',
-        display: 'inline-block',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        backgroundColor: alpha(theme.palette.common.black, .25),
-        background: `linear-gradient(${alpha(theme.palette.common.black, .1)}, ${alpha(theme.palette.common.black, .95)})`,
-    }
-}));
-const StyledBadgeContent = styled('div')({
-    position: 'absolute',
-    left: 10,
-    right: 10,
-    bottom: 6,
-});
-const Item = styled('div')({
-    width: '33.33%',
-    padding: '0 5px',
-    marginBottom: '10px',
-});
-
-const Friends = () => {
+const Friends = ({ item, title }) => {
     return (
         <JumboCardQuick
             title={
-                <Typography variant={"h4"} mb={0}>Friends - 530 <Span sx={{color: 'text.secondary', fontSize: 13}}>(27
-                Mutual)</Span></Typography>
+                <Typography variant={"h4"} mb={0} color={"primary.main"}>
+                    {title} skills
+                </Typography>
             }
-            wrapperSx={{pt: 0}}
+            wrapperSx={{ pt: 0 }}
         >
-            <Stack direction="row" flexWrap={"wrap"} sx={{margin: '0 -10px'}}>
-                {
-                    friendsData.map((item, index) => (
-                        <Item key={index}>
-                            <StyledBadge overlap={"circular"} variant={"dot"} color={item.color}>
-                                <StyledAvatar
-                                    alt={"Remy Sharp"}
-                                    src={item.profilePic}
-                                    variant={"rounded"}
-                                />
-                                <StyledBadgeContent>
-                                    <Typography fontSize={"small"} noWrap variant="body2" color="common.white">
-                                        {item.name}
-                                    </Typography>
-                                </StyledBadgeContent>
-                            </StyledBadge>
-                        </Item>
-                    ))
-                }
-            </Stack>
-        </JumboCardQuick>
+            {
+                item && item.length > 0 && item.map((skill, key) => {
+                    return (
+                        <Typography variant={"h5"} >
+                            <Brightness1Icon color="primary" fontSize='5px' />   {skill?.skillName}
+                        </Typography>
+                    )
+                })
+            }
+        </JumboCardQuick >
     );
 };
 

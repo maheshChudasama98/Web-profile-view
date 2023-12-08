@@ -5,15 +5,14 @@ import JumboContentLayoutHeader from "./JumboContentLayoutHeader";
 import JumboContentLayoutSidebar from "./JumboContentLayoutSidebar";
 import JumboContentLayoutMain from "./JumboContentLayoutMain";
 import JumboContentLayoutFooter from "./JumboContentLayoutFooter";
-import {Box} from "@mui/material";
+import { Box } from "@mui/material";
 
-const JumboContentLayout = ({header, footer, sidebar, children, layoutOptions}) => {
+const JumboContentLayout = ({ header, footer, sidebar, children, layoutOptions }) => {
     const contentLayout = useJumboContentLayout();
-
     React.useEffect(() => {
         if (layoutOptions)
             contentLayout.setContentLayout(layoutOptions);
-    }, [layoutOptions]);
+    }, []);
 
     return (
         <Div

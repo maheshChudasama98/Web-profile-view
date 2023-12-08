@@ -113,32 +113,30 @@ const Companies = () => {
           {
             companyList && companyList.length > 0 && companyList.map((item, key) => {
               return (
-                <>
-                  <ListCard >
-                    <Div sx={{ display: "flex", justifyContent: "space-between" }}>
-                      <Typography variant={"h4"} color={"primary.main"} >{item?.companyName}</Typography>
-                      <Div>
-                        <JumboDdMenu
-                          menuItems={menuItems}
-                          item={item}
-                        // icon={<MoreVertIcon fontSize='20px' />}
-                        />
-                      </Div>
+                <ListCard key={key} >
+                  <Div sx={{ display: "flex", justifyContent: "space-between" }}>
+                    <Typography variant={"h4"} color={"primary.main"} >{item?.companyName}</Typography>
+                    <Div>
+                      <JumboDdMenu
+                        menuItems={menuItems}
+                        item={item}
+                      // icon={<MoreVertIcon fontSize='20px' />}
+                      />
                     </Div>
+                  </Div>
 
-                    <Typography variant={"h6"} color={"text.secondary"} >{item?.companySize}</Typography>
-                    <Typography variant={"h6"} color={"text.secondary"} >Board-{item?.companyEmail}</Typography>
+                  <Typography variant={"h6"} color={"text.secondary"} >{item?.companySize}</Typography>
+                  <Typography variant={"h6"} color={"text.secondary"} >Board-{item?.companyEmail}</Typography>
 
-                    <Div sx={{ display: "flex", justifyContent: "space-between" }}>
-                      <Typography variant={"h6"} color={"text.secondary"} >{item?.state}, {item?.city} </Typography>
-                      <Typography
-                        variant={"h6"}
-                        color={"text.secondary"} >
-                        Start - ( {item?.startYear} )
-                      </Typography>
-                    </Div>
-                  </ListCard>
-                </>
+                  <Div sx={{ display: "flex", justifyContent: "space-between" }}>
+                    <Typography variant={"h6"} color={"text.secondary"} >{item?.state}, {item?.city} </Typography>
+                    <Typography
+                      variant={"h6"}
+                      color={"text.secondary"} >
+                      Start - ( {item?.startYear} )
+                    </Typography>
+                  </Div>
+                </ListCard>
               )
             })
 

@@ -9,8 +9,6 @@ import styled from "@emotion/styled";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import { ASSET_AVATARS } from "../../../utils/constants/paths";
-import { getAssetPath } from "../../../utils/appHelpers";
 import { Link } from 'react-router-dom/dist';
 
 const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
@@ -36,13 +34,13 @@ const Header = () => {
         <ContentHeader
             avatar={
                 <Avatar
-                    sx={{ width: 100, height: 100 }}
+                    sx={{ width: 160, height: 160 }}
                     alt={"Mahesh Chusasama"}
                     src={"/images/callouts/camera.jpeg"}
                 />
             }
-            title={"Mahesh Chusasama"}
-            subheader={<Typography fontSize={15} variant={'body1'} color={'inherit'} mt={.5}>Rajkot, India</Typography>}
+            title={<Typography  variant={'h1'} color={'inherit'} mt={.5}>Mahesh Chudasama</Typography>}
+            subheader={< Typography fontSize={15} variant={'body1'} color={'inherit'} mt={.5} > Rajkot, India</Typography >}
             // children={
             //     <Stack
             //         direction={"row"}
@@ -68,23 +66,24 @@ const Header = () => {
             //     </Stack>
             // }
             tabs={
-                <List
-                    disablePadding
-                    sx={{
-                        display: 'flex',
-                        minWidth: 0,
+                <></>
+                // <List
+                //     disablePadding
+                //     sx={{
+                //         display: 'flex',
+                //         minWidth: 0,
 
-                    }}
-                >
-                    <StyledMenuItem>Timeline</StyledMenuItem>
-                    <StyledMenuItem>About</StyledMenuItem>
-                    <StyledMenuItem>Photos</StyledMenuItem>
-                    <StyledMenuItem>Friends</StyledMenuItem>
-                    <StyledMenuItem>More</StyledMenuItem>
-                </List>
+                //     }}
+                // >
+                //     <StyledMenuItem>Timeline</StyledMenuItem>
+                //     <StyledMenuItem>About</StyledMenuItem>
+                //     <StyledMenuItem>Photos</StyledMenuItem>
+                //     <StyledMenuItem>Friends</StyledMenuItem>
+                //     <StyledMenuItem>More</StyledMenuItem>
+                // </List>
             }
             action={
-                <Link to={'/login'} >
+                < Link to={'/login'} >
                     <Button
                         disableRipple
                         variant="text"
@@ -99,7 +98,7 @@ const Header = () => {
                     >
                         Settings
                     </Button>
-                </Link>
+                </Link >
             }
             sx={{
                 position: 'relative',
