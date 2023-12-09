@@ -62,6 +62,10 @@ const Index = () => {
     <>
       <Div className='header-main-div' >
         <Div className='header-name-div' >
+          <img
+            style={{ width: "250px", height: "auto" }}
+            src={ `/images/myWebLog.png` }
+             />
           {/* <h1 className='web-name'>
             Mahesh Chudasama
           </h1> */}

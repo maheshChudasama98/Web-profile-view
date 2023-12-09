@@ -1,18 +1,26 @@
 import React from 'react';
 import Div from "@jumbo/shared/Div";
 import Link from "@mui/material/Link";
-import {ASSET_IMAGES} from "../../utils/constants/paths";
+import { ASSET_IMAGES } from "../../utils/constants/paths";
 
-
-const Logo = ({mini, mode, sx}) => {
+const Logo = ({ mini, mode, sx }) => {
     return (
-        <Div sx={{display: "inline-flex", ...sx}}>
+        <Div sx={{ display: "inline-flex", ...sx }}>
             <Link href={'/dashboards/misc'}>
                 {
                     !mini ?
-                        <img src={ mode === "light" ? `${ASSET_IMAGES}/logo.png` : `${ASSET_IMAGES}/logo-white.png`} alt="Jumbo React" />
+
+                        <img
+                            style={{ width: "90%", height: "auto" }}
+                            src={mode === "light" ? `/images/myWebLog.png` : `/images/myWebLog.png`}
+                            alt="Jumbo React" />
+                        // <img src={'/images/callouts/camera.jpeg'} alt="Jumbo React" />
                         :
-                        <img src={mode === "light" ? `${ASSET_IMAGES}/logo-short.png` : `${ASSET_IMAGES}/logo-short-white.png`} alt="Jumbo React" />
+                        <img
+                            style={{ width: "90%", height: "auto" }}
+                            src={mode === "light" ? `/images/myWebLog.png` : `/images/myWebLog.png`}
+                            alt="Jumbo React" />
+                    // <img src={mode === "light" ? `${ASSET_IMAGES}/myWebLog.png` : `${ASSET_IMAGES}/myWebLog.png`} alt="Jumbo React" />
                 }
             </Link>
         </Div>
